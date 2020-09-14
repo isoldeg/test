@@ -3,6 +3,6 @@ public class Testing {
         System.out.println("hi");
         System.out.println("bye");
 	System.out.println("test");
-        System.out.println("test again");
+        System.out.println("test again!");
     }
 }
