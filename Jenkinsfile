@@ -28,7 +28,7 @@ pipeline {
     post {
         always {
             step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
-	    emailext body: '$DEFAULT_CONTENT', recipientProviders: [$class: 'DevelopersRecipientProvider'], subject: '$DEFAULT_SUBJECT', to: 'isoldetester@gmail.com'
+	    emailext body: '$DEFAULT_CONTENT', subject: '$DEFAULT_SUBJECT', to: '$DEFAULT_RECIPIENTS'
         }
     }
 }
