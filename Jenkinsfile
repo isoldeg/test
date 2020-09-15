@@ -33,7 +33,6 @@ pipeline {
         always {
             step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
 	    emailext body: '$DEFAULT_CONTENT', subject: '$DEFAULT_SUBJECT', to: '$DEFAULT_RECIPIENTS'
-	    archiveArtifacts artifacts: 'resources/screenshots/**/*.png', fingerprint: true
         }
     }
 }
