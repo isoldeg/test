@@ -11,12 +11,16 @@ pipeline {
         stage('Build') {
             steps {
                 git credentialsId: '35381c1b-98ac-44c2-9418-84a44fd0f177', url: 'https://isoldeteamwork@github.com/Teamwork/qa-projects-frontend.git'
-                sh "mvn -f TeamworkAutomatedTests/pom.xml clean"
-	          }
-	      }
+		Applitools() {
+            	    sh "mvn -f TeamworkAutomatedTests/pom.xml clean"
+        	}
+	    }
+	}
         stage('Test') {
             steps {
-                sh "mvn -f TeamworkAutomatedTests/pom.xml test -DurlToBeTested=${params.APPLICATION} -DbrowserToBeTested=${params.BROWSER}"
+                Applitools() {
+                    sh "mvn -f TeamworkAutomatedTests/pom.xml test -DurlToBeTested=${params.APPLICATION} -DbrowserToBeTested=${params.BROWSER}"
+		}
             }
         }
         stage('Deploy') {
