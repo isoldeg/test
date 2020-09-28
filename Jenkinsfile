@@ -9,6 +9,7 @@ pipeline {
 	choice(name: 'SPACES_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/spaces', 'https://1598950530563.eu.teamwork.com/launchpad/login/space'])
 	choice(name: 'CRM_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/crm', 'https://1598950530563.eu.teamwork.com/launchpad/login/crm'])
 	choice(name: 'CHAT_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/chat', 'https://1598950530563.eu.teamwork.com/launchpad/login/chat'])
+	choice(name: 'DESK_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/desk', 'https://1598950530563.eu.teamwork.com/launchpad/login/desk'])
     }
     stages {
         stage('Build') {
@@ -22,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 Applitools(applitoolsApiKey: 'wFPVDWiu3IhoeEfrcQU47eEfehJhOIKOWCZVVckISbE110', notifyByCompletion: true, serverURL: 'https://eyes.applitools.com') {
-                    sh "mvn -f TeamworkAutomatedTests/pom.xml test -DurlToBeTested=${params.APPLICATION} -DbrowserToBeTested=${params.BROWSER} -DspacesUrlToBeTested=${params.SPACES_APPLICATION} -DcrmUrlToBeTested=${params.CRM_APPLICATION} -DchatUrlToBeTested=${params.CHAT_APPLICATION}"
+                    sh "mvn -f TeamworkAutomatedTests/pom.xml test -DurlToBeTested=${params.APPLICATION} -DbrowserToBeTested=${params.BROWSER} -DspacesUrlToBeTested=${params.SPACES_APPLICATION} -DcrmUrlToBeTested=${params.CRM_APPLICATION} -DchatUrlToBeTested=${params.CHAT_APPLICATION} -DdeskUrlToBeTested=${params.DESK_APPLICATION}"
 		}
             }
         }
