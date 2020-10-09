@@ -4,8 +4,9 @@ pipeline {
         maven 'MAVEN_HOME'
     }
     parameters {
-        choice(name: 'APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/projects', 'https://1598950530563.eu.teamwork.com/launchpad/login/projects'])
+	choice(name: 'SUITE_XML_FILE', choices: ['testng-critical-tests.xml', 'testng.xml']
 	choice(name: 'BROWSER', choices: ['Chrome', 'Firefox', 'Safari', 'Edge'])
+        choice(name: 'APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/projects', 'https://1598950530563.eu.teamwork.com/launchpad/login/projects'])
 	choice(name: 'SPACES_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/spaces', 'https://1598950530563.eu.teamwork.com/launchpad/login/space'])
 	choice(name: 'CRM_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/crm', 'https://1598950530563.eu.teamwork.com/launchpad/login/crm'])
 	choice(name: 'CHAT_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/chat', 'https://1598950530563.eu.teamwork.com/launchpad/login/chat'])
@@ -23,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 Applitools(applitoolsApiKey: 'wFPVDWiu3IhoeEfrcQU47eEfehJhOIKOWCZVVckISbE110', notifyByCompletion: true, serverURL: 'https://eyes.applitools.com') {
-                    sh "mvn -f TeamworkAutomatedTests/pom.xml test -DurlToBeTested=${params.APPLICATION} -DbrowserToBeTested=${params.BROWSER} -DspacesUrlToBeTested=${params.SPACES_APPLICATION} -DcrmUrlToBeTested=${params.CRM_APPLICATION} -DchatUrlToBeTested=${params.CHAT_APPLICATION} -DdeskUrlToBeTested=${params.DESK_APPLICATION}"
+			sh "mvn -f TeamworkAutomatedTests/pom.xml test -DsuiteXmlFile=${params.SUITE_XML_FILE} -DbrowserToBeTested=${params.BROWSER} -DurlToBeTested=${params.APPLICATION} -DspacesUrlToBeTested=${params.SPACES_APPLICATION} -DcrmUrlToBeTested=${params.CRM_APPLICATION} -DchatUrlToBeTested=${params.CHAT_APPLICATION} -DdeskUrlToBeTested=${params.DESK_APPLICATION}"
 		}
             }
         }
