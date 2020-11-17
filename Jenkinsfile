@@ -4,7 +4,7 @@ pipeline {
         maven 'MAVEN_HOME'
     }
     parameters {
-	choice(name: 'SUITE_XML_FILE', choices: ['testng-critical-tests.xml', 'testng.xml'])
+	choice(name: 'SUITE_XML_FILE', choices: ['testng-critical-tests.xml', 'testng.xml', 'testng-critical-tests-chat.xml])
 	choice(name: 'BROWSER', choices: ['Chrome', 'Firefox', 'Safari', 'Edge'])
         choice(name: 'APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/projects', 'https://1598950530563.eu.teamwork.com/launchpad/login/projects'])
 	choice(name: 'SPACES_APPLICATION', choices: ['https://1598951385705.teamwork.com/launchpad/login/spaces', 'https://1598950530563.eu.teamwork.com/launchpad/login/space'])
